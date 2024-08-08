@@ -1,7 +1,7 @@
 import IluPI from './images/PERSONAL_ITINERARIES.png';
 import IluEE from './images/EXCLUSIVE_EXPERIENCES.png';
 import IluBF from './images/Best_Facilities.png';
-import type { ExperienceProps } from '../type';
+import type { ListProps } from '../fragments/ExperienceList/type';
 
 export default {
   content: [
@@ -23,5 +23,5 @@ export default {
         'Experience the epitome of with our premium facility, designed to provide an unparalleled level of comfort and indulgence.',
       ilustration: IluBF,
     },
-  ] as ExperienceProps['content'][],
+  ] as ListProps['content'][],
 };

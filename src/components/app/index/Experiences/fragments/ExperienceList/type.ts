@@ -1,6 +1,9 @@
 import { StaticImageData } from 'next/image';
 
-export type ExperienceProps = {
+export type ExperienceListProps = {
+  className?: string;
+};
+export type ListProps = {
   content: {
     title: string;
     description: string;

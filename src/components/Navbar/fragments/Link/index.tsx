@@ -17,7 +17,7 @@ const linkVariants = tv({
   ),
   variants: {
     look: {
-      navLinkLook: 'relative [--test:1]',
+      navLinkLook: 'relative',
       button: buttonVariants({
         theme: 'white',
         look: 'outline',
@@ -39,7 +39,7 @@ export default function Link(props: LinkProps) {
   }, [params]);
 
   return (
-    <NextLink {...rest} scroll={false} href={href} className={linkVariants({ look, className })}>
+    <NextLink {...rest} href={href} className={linkVariants({ look, className })}>
       {look === 'navLinkLook' ? (
         <NavLinkLook isActive={isActive}>{children}</NavLinkLook>
       ) : (

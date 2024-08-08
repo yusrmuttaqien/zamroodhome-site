@@ -23,6 +23,8 @@ const config: Config = {
       },
       screens: {
         sm: '430px',
+        'md-500-only': { max: '499px' },
+        'md-only': { max: '767px' },
         'xl-1096-only': { max: '1095px' },
         'xl-1096': '1096px',
         'xl-only': { max: '1279px' },
@@ -107,6 +109,16 @@ const config: Config = {
             const [minValue, maxValue, minViewport, maxViewport] = size.split(' ').map(Number);
 
             return { height: clamp({ minValue, maxValue, minViewport, maxViewport }) };
+          },
+          'max-w-clamp': (size) => {
+            const [minValue, maxValue, minViewport, maxViewport] = size.split(' ').map(Number);
+
+            return { maxWidth: clamp({ minValue, maxValue, minViewport, maxViewport }) };
+          },
+          'my-clamp': (size) => {
+            const [minValue, maxValue, minViewport, maxViewport] = size.split(' ').map(Number);
+
+            return { marginBlock: clamp({ minValue, maxValue, minViewport, maxViewport }) };
           },
         },
         { values: { none: '0 0 0 0' } }
