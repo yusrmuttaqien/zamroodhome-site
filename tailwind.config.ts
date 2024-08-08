@@ -98,6 +98,16 @@ const config: Config = {
 
             return { marginTop: clamp({ minValue, maxValue, minViewport, maxViewport }) };
           },
+          'mb-clamp': (size) => {
+            const [minValue, maxValue, minViewport, maxViewport] = size.split(' ').map(Number);
+
+            return { marginBottom: clamp({ minValue, maxValue, minViewport, maxViewport }) };
+          },
+          'h-clamp': (size) => {
+            const [minValue, maxValue, minViewport, maxViewport] = size.split(' ').map(Number);
+
+            return { height: clamp({ minValue, maxValue, minViewport, maxViewport }) };
+          },
         },
         { values: { none: '0 0 0 0' } }
       );

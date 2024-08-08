@@ -1,10 +1,12 @@
 import { Fragment } from 'react';
 import Hero from '@/components/app/index/Hero';
+import Experiences from '@/components/app/index/Experiences';
 
 export default function Homepage() {
   return (
     <Fragment>
       <Hero />
+      <Experiences />
       Lorem ipsum dolor sit, amet consectetur adipisicing elit. Ratione officiis dicta alias,
       quaerat officia ipsum dolorum animi dolor, nemo voluptatum quo. Voluptatum quis non sequi illo
       aliquid, corporis excepturi ipsam voluptas ullam quo adipisci et sapiente earum odit unde, ad,
