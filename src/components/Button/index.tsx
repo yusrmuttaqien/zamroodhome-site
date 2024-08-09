@@ -4,7 +4,7 @@ import type { ButtonProps } from './type';
 
 export const buttonVariants = tv({
   base: classMerge(
-    'font-bold font-variation-settings-["wght"_700]',
+    'font-bold font-variation-settings-["wght"_700] leading-[1.2rem]',
     'px-6 py-[1.0938rem] transition-colors rounded-full'
   ),
   variants: {

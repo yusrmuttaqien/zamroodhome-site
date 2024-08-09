@@ -7,13 +7,13 @@ import type { DraggableProps } from './type';
 
 export const DRAGGABLE_STYLES = tv({
   slots: {
-    wrapper: 'xl-1096-only:overflow-hidden',
+    wrapper: 'xl-only:overflow-hidden',
     dragger: 'w-max cursor-grab',
   },
 });
 
 export default function Draggable(props: DraggableProps) {
-  const { children, className } = props;
+  const { children, className, name } = props;
   const scope = useRef<HTMLDivElement>(null);
   const states = useRef({
     mouseHold: false,
@@ -24,7 +24,7 @@ export default function Draggable(props: DraggableProps) {
 
   function _cursorGrab(e: MouseEvent) {
     const event = e.type;
-    const draggable = document.getElementById('draggable');
+    const draggable = document.getElementById(`${name}-draggable`);
 
     switch (event) {
       case 'mousedown':
@@ -53,9 +53,10 @@ export default function Draggable(props: DraggableProps) {
   return (
     <div ref={scope} className={wrapper({ className: className?.wrapper })}>
       <motion.div
-        id="draggable"
+        id={`${name}-draggable`}
         drag="x"
         dragConstraints={scope}
+        dragElastic={0.01}
         className={dragger({ className: className?.dragger })}
         onMouseDown={_cursorGrab}
         onMouseUp={_cursorGrab}

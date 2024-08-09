@@ -1,9 +1,11 @@
+import Draggable from '@/components/Draggable';
 import ExploreMore from './fragments/ExploreMore';
 import BigCard from './fragments/BigCard';
 import SmallCard from './fragments/SmallCard';
-import Draggable from './fragments/Draggable';
-import type { BigCardProps } from './fragments/BigCard/type';
+import classMerge from '@/utils/classMerge';
 import BG from '@/components/app/index/Hero/contents/images/bg.jpeg';
+import type { DestinationsProps } from './type';
+import type { BigCardProps } from './fragments/BigCard/type';
 
 const DATA_DUMMY: BigCardProps['content'] = {
   images: BG,
@@ -19,9 +21,11 @@ const DATA_DUMMY: BigCardProps['content'] = {
   href: '#',
 };
 
-export default function Destinations() {
+export default function Destinations(props: DestinationsProps) {
+  const { className } = props;
+
   return (
-    <section className="scroll-m-[var(--navbar-height)]" id="destinations">
+    <section className={classMerge('scroll-m-[var(--navbar-height)]', className)} id="destinations">
       <div className="wrapper">
         <div className="flex md-500-only:flex-col gap-2 md-500:gap-6 md-500:items-center">
           <h2 className="text-clamp-[22_36_430_1440] font-bold font-unbounded text-green-dark">
@@ -41,6 +45,7 @@ export default function Destinations() {
         />
       </div>
       <Draggable
+        name="destinations"
         className={{
           wrapper: 'py-8 wrapper',
           dragger: 'flex justify-between gap-4 wrapper',

@@ -27,6 +27,8 @@ const config: Config = {
         sm: '430px',
         'md-500-only': { max: '499px' },
         'md-500': '500px',
+        'md-550-only': { max: '549px' },
+        'md-550': '550px',
         'md-700-only': { max: '699px' },
         'md-700': '700px',
         'md-only': { max: '767px' },
@@ -48,13 +50,14 @@ const config: Config = {
     },
   },
   plugins: [
+    require('@tailwindcss/container-queries'),
     plugin(({ addComponents, matchUtilities, addUtilities, theme }) => {
       addUtilities({
-        '.transform-preserve3d': { transformStyle: 'preserve-3d' },
         '.mask-navbar': {
           maskImage:
             'linear-gradient(to bottom, rgba(0, 0, 0, 1) 70%, rgba(0, 0, 0, .8) 90%, transparent 100%)',
         },
+        '.transform-preserve3d': { transformStyle: 'preserve-3d' },
       });
       matchUtilities(
         {
@@ -134,6 +137,14 @@ const config: Config = {
           },
         },
         { values: { none: '0 0 0 0' } }
+      );
+      matchUtilities(
+        {
+          perspective: (value) => {
+            return { perspective: value };
+          },
+        },
+        { values: { '5000': '5000px' } }
       );
     }),
   ],
