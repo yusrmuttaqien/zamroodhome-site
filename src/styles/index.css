@@ -20,6 +20,6 @@ body {
 
 @media (min-width: 1280px) {
   :root {
-    --navbar-height: 6.9375rem;
+    --navbar-height: 6.6875rem;
   }
 }

@@ -29,6 +29,8 @@ const config: Config = {
         'md-500': '500px',
         'md-550-only': { max: '549px' },
         'md-550': '550px',
+        'md-600-only': { max: '599px' },
+        'md-600': '600px',
         'md-700-only': { max: '699px' },
         'md-700': '700px',
         'md-only': { max: '767px' },
@@ -130,10 +132,21 @@ const config: Config = {
 
             return { marginBlock: clamp({ minValue, maxValue, minViewport, maxViewport }) };
           },
+          'p-clamp': (size) => {
+            const [minValue, maxValue, minViewport, maxViewport] = size.split(' ').map(Number);
+
+            return { padding: clamp({ minValue, maxValue, minViewport, maxViewport }) };
+          },
           'leading-clamp': (size) => {
             const [minValue, maxValue, minViewport, maxViewport] = size.split(' ').map(Number);
 
             return { lineHeight: clamp({ minValue, maxValue, minViewport, maxViewport }) };
+          },
+          'size-clamp': (size) => {
+            const [minValue, maxValue, minViewport, maxViewport] = size.split(' ').map(Number);
+            const clampString = clamp({ minValue, maxValue, minViewport, maxViewport });
+
+            return { height: clampString, width: clampString };
           },
         },
         { values: { none: '0 0 0 0' } }

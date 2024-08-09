@@ -1,4 +1,5 @@
 import Navbar from '@/components/Navbar';
+import Footer from '@/components/Footer';
 import classMerge from '@/utils/classMerge';
 import { metadata as Metadata, unbounded, albertSans, theSignature } from '@/constants/app';
 import type { RootLayoutProps } from '@/types/app';
@@ -13,6 +14,7 @@ export default function RootLayout(props: RootLayoutProps) {
       <body className={classMerge(unbounded.variable, albertSans.variable, theSignature.variable)}>
         <Navbar className="z-20" />
         <main className="z-10">{children}</main>
+        <Footer className="z-10" />
       </body>
     </html>
   );

@@ -8,6 +8,16 @@ import type { ClampParams } from '@/utils/clamp/type';
  */
 export default function clamp(params: ClampParams): string {
   const { minValue, maxValue, minViewport, maxViewport, baseFontSize = 16 } = params;
+  const isReverse = minValue > maxValue;
+
+  // TODO: Learn how to properly calculate clamp function for reversed values
+  if (isReverse) {
+    const initClamp = clamp({ minValue: 0, maxValue: maxValue, minViewport, maxViewport });
+    const minValueRem = (minValue * 1.2) / baseFontSize;
+
+    return `calc(${minValueRem}rem - ${initClamp})`;
+  }
+
   const preferredViewport = 100 * ((maxValue - minValue) / (maxViewport - minViewport));
   const preferredRelative =
     (minViewport * maxValue - maxViewport * minValue) / (minViewport - maxViewport);
