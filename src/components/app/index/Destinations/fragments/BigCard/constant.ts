@@ -1,6 +1,5 @@
 import type { MotionProps } from 'framer-motion';
 
-// TODO: Smooth out the transition
 export const VARIANTS: MotionProps = {
   initial: { opacity: 0, zIndex: 2, filter: 'blur(16px)' },
   animate: { opacity: 1, filter: 'blur(0)' },
