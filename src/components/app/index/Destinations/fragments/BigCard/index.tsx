@@ -74,7 +74,7 @@ function LoopingImage(props: LoopingImageProps) {
   const { scope, active } = useInteractive({ content });
 
   return (
-    <div ref={scope} className="relative h-clamp-[256_374_430_1440] md-700:flex-1">
+    <div ref={scope} className="relative h-clamp-[256_374_430_1440] w-full md-700:flex-1">
       <AnimatePresence initial={false}>
         <motion.div key={active.key} className="absolute inset-0" {...VARIANTS}>
           <Image
