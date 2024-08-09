@@ -5,14 +5,14 @@ import type { ArticleCardProps } from './type';
 
 export default function ArticleCard(props: ArticleCardProps) {
   const { className, content } = props;
-  const { href, images, title } = content;
+  const { href, image, title } = content;
 
   return (
-    <Link href={href} className={classMerge('size-full group/card', className)}>
+    <Link href={href} className={classMerge('size-full group/card', className)} target="_blank">
       <figure className="size-full relative flex items-end">
         <Image
-          alt={`${title}-thumbnail`}
-          src={images}
+          alt={image.alt}
+          src={image.src}
           draggable={false}
           className={classMerge(
             'object-cover group-hover/card:hoverable:saturate-100 transition-[filter]',

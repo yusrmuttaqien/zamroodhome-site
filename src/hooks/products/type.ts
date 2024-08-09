@@ -1,7 +1,5 @@
-type ImageEntity = {
-  alt: string;
-  src: string;
-};
+import type { ImageEntity, GenericResponse } from '@/types/data';
+
 export type ProductsStructure = {
   galleries: ImageEntity[];
   lists: {
@@ -20,7 +18,4 @@ export type ProductsStructure = {
 export type DataStructure = {
   galleries: ProductsStructure['galleries'];
   lists: ProductsStructure['lists'];
-  success: boolean;
-  code: number;
-  message: string;
-};
+} & GenericResponse;

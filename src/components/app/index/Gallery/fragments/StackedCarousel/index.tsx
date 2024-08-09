@@ -3,13 +3,11 @@ import Draggable from '@/components/Draggable';
 import MonoSeparator from '@/contents/svgs/mono-separator.svg';
 import evenSplitArray from '@/utils/evenSplitArray';
 import classMerge from '@/utils/classMerge';
-import arrayOfN from '@/utils/arrayOfN';
 import type { StackedCarouselProps, CarouselProps } from './type';
 
 export default function StackedCarousel(props: StackedCarouselProps) {
   const { className, content } = props;
-  const arrayOf6 = arrayOfN({ length: 6, array: content });
-  const { firstArray, secondArray } = evenSplitArray({ array: arrayOf6 });
+  const { firstArray, secondArray } = evenSplitArray({ array: content });
 
   return (
     <div className={className}>
@@ -35,16 +33,16 @@ function Carousel(props: CarouselProps) {
       name={name}
       className={{
         wrapper: classMerge('wrapper', className),
-        dragger: 'flex justify-between gap-6',
+        dragger: 'flex justify-between gap-6 xl-only:px-9',
       }}
     >
-      {content.map((image, idx) => (
+      {content.map(({ src, alt, id }) => (
         <Image
-          src={image}
+          src={src}
           draggable={false}
           className="object-cover"
-          alt={`image-gallery-${name}-${idx}`}
-          key={typeof image === 'string' ? image : `image-gallery-${name}-${idx}`}
+          alt={alt}
+          key={id}
           wrapper={{ className: 'h-[21.8331rem] aspect-square' }}
         />
       ))}

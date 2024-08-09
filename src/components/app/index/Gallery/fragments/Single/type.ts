@@ -1,9 +1,9 @@
-import type { GalleryContent } from '../../type';
+import type { ProductsStructure } from '@/hooks/products/type';
 
 export type SingleProps = {
   className?: string;
-  content: GalleryContent;
+  content: ProductsStructure['galleries'];
 };
 export type InteractiveParams = {
-  content: GalleryContent;
+  content: ProductsStructure['galleries'];
 };

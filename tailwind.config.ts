@@ -33,6 +33,8 @@ const config: Config = {
         'md-600': '600px',
         'md-700-only': { max: '699px' },
         'md-700': '700px',
+        'md-820-only': { max: '819px' },
+        'md-820': '820px',
         'md-only': { max: '767px' },
         'xl-1096-only': { max: '1095px' },
         'xl-1096': '1096px',

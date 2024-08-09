@@ -1,11 +1,11 @@
-import type { GalleryContent } from '../../type';
+import type { ProductsStructure } from '@/hooks/products/type';
 
 export type StackedCarouselProps = {
   className?: string;
-  content: GalleryContent;
+  content: ProductsStructure['galleries'];
 };
 export type CarouselProps = {
   name: string;
   className?: string;
-  content: GalleryContent;
+  content: ProductsStructure['galleries'];
 };

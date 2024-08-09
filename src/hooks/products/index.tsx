@@ -27,6 +27,7 @@ export default function useProducts() {
       const images = data.related_galleries.map((gallery: any) => ({
         alt: gallery.gallery_alt_text,
         src: gallery.src,
+        id: gallery.gallery_id,
       })) as ProductsStructure['galleries'];
 
       galleries = [...galleries, ...images];

@@ -1,10 +1,6 @@
-import { StaticImageData } from 'next/image';
+import type { ArticleStructure } from '@/hooks/articles/type';
 
 export type ArticleCardProps = {
   className?: string;
-  content: {
-    href: string;
-    images: string | StaticImageData; // TODO: update this type
-    title: string;
-  };
+  content: ArticleStructure;
 };

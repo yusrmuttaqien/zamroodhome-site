@@ -18,10 +18,10 @@ export default function Single(props: SingleProps) {
         <AnimatePresence initial={false}>
           <motion.div key={active.key} className="absolute inset-0" {...VARIANTS}>
             <Image
-              src={active.content}
+              src={active.content.src}
               draggable={false}
               className="object-cover"
-              alt="image-gallery-single-0"
+              alt={active.content.alt}
             />
           </motion.div>
         </AnimatePresence>
