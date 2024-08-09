@@ -35,7 +35,7 @@ function Carousel(props: CarouselProps) {
       name={name}
       className={{
         wrapper: classMerge('wrapper', className),
-        dragger: 'flex justify-between gap-6 wrapper',
+        dragger: 'flex justify-between gap-6',
       }}
     >
       {content.map((image, idx) => (

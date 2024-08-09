@@ -1,28 +1,22 @@
+'use client';
+
+import useProducts from '@/hooks/products';
 import Draggable from '@/components/Draggable';
+import StickyMessage from '@/components/StickyMessage';
 import ExploreMore from './fragments/ExploreMore';
 import BigCard from './fragments/BigCard';
 import SmallCard from './fragments/SmallCard';
 import classMerge from '@/utils/classMerge';
-import BG from '@/components/app/index/Hero/contents/images/bg.jpeg';
 import type { DestinationsProps } from './type';
-import type { BigCardProps } from './fragments/BigCard/type';
-
-const DATA_DUMMY: BigCardProps['content'] = {
-  images: BG,
-  duration: '7 Days 7 Night',
-  title: 'Paradise Gateway: Labuan Bajo',
-  organizeBy: 'Organized by Pandooin',
-  description:
-    "Labuan Bajo is a tropical paradise nestled in the westernmost part of Flores Island, Indonesia. With its stunning landscapes, crystal-clear waters, and vibrant marine life, it's a gateway to explore the mesmerizing Komodo National Park.",
-  prices: {
-    initial: 'IDR 9,999,999',
-    final: 'IDR 5,200,000',
-  },
-  href: '#',
-};
 
 export default function Destinations(props: DestinationsProps) {
   const { className } = props;
+  const { lists, isLoading } = useProducts();
+  const isEmpty = lists.length === 0;
+  const isAvailable = !isLoading && !isEmpty;
+  const isMore = lists.length > 4;
+  const firstFour = lists.slice(0, 4);
+  const next = lists.slice(5);
 
   return (
     <section className={classMerge('scroll-m-[var(--navbar-height)]', className)} id="destinations">
@@ -33,29 +27,42 @@ export default function Destinations(props: DestinationsProps) {
           </h2>
           <ExploreMore />
         </div>
-        <BigCard content={DATA_DUMMY} className="py-clamp-[24_72_430_1440]" />
-        <BigCard
-          content={DATA_DUMMY}
-          className="py-clamp-[24_72_430_1440] md-700:flex-row-reverse"
-        />
-        <BigCard content={DATA_DUMMY} className="py-clamp-[24_72_430_1440]" />
-        <BigCard
-          content={DATA_DUMMY}
-          className="py-clamp-[24_72_430_1440] md-700:flex-row-reverse"
-        />
+        {!isAvailable && (
+          <StickyMessage className={{ wrapper: 'h-[calc(100svh_-_var(--navbar-height))]' }}>
+            <p className="text-center font-medium mt-6">
+              {isLoading && 'Loading destinations'}
+              {!isLoading && 'No destinations found'}
+            </p>
+          </StickyMessage>
+        )}
+        {isAvailable &&
+          firstFour.map((item, idx) => (
+            <BigCard
+              key={item.title}
+              content={item}
+              className={classMerge(
+                'py-clamp-[24_72_430_1440]',
+                idx % 2 !== 0 && 'md-700:flex-row-reverse'
+              )}
+            />
+          ))}
       </div>
-      <Draggable
-        name="destinations"
-        className={{
-          wrapper: 'py-8 wrapper',
-          dragger: 'flex justify-between gap-4 wrapper',
-        }}
-      >
-        <SmallCard content={DATA_DUMMY} />
-        <SmallCard content={DATA_DUMMY} />
-        <SmallCard content={DATA_DUMMY} />
-        <SmallCard content={DATA_DUMMY} />
-      </Draggable>
+      {isMore && (
+        <Draggable
+          name="destinations"
+          className={{
+            wrapper: 'py-8 wrapper',
+            dragger: classMerge(
+              'flex gap-4 min-w-full xl-only:px-4',
+              next.length >= 4 && 'justify-between'
+            ),
+          }}
+        >
+          {next.map((item) => (
+            <SmallCard key={item.title} content={item} />
+          ))}
+        </Draggable>
+      )}
       <div className="wrapper my-clamp-[26_54_430_1440]">
         <ExploreMore className="w-max xl-1096-only:mx-auto xl-1096:ml-auto" />
       </div>

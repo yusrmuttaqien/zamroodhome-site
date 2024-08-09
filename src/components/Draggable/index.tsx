@@ -7,8 +7,9 @@ import type { DraggableProps } from './type';
 
 export const DRAGGABLE_STYLES = tv({
   slots: {
-    wrapper: 'xl-only:overflow-hidden',
+    wrapper: '',
     dragger: 'w-max cursor-grab',
+    container: 'w-full overflow-hidden',
   },
 });
 
@@ -20,7 +21,7 @@ export default function Draggable(props: DraggableProps) {
     mouseRelease: false,
     mouseLeave: false,
   });
-  const { wrapper, dragger } = DRAGGABLE_STYLES();
+  const { wrapper, dragger, container } = DRAGGABLE_STYLES();
 
   function _cursorGrab(e: MouseEvent) {
     const event = e.type;
@@ -51,20 +52,21 @@ export default function Draggable(props: DraggableProps) {
   }
 
   return (
-    <div ref={scope} className={wrapper({ className: className?.wrapper })}>
-      <motion.div
-        id={`${name}-draggable`}
-        drag="x"
-        dragConstraints={scope}
-        dragElastic={0.01}
-        className={dragger({ className: className?.dragger })}
-        onMouseDown={_cursorGrab}
-        onMouseUp={_cursorGrab}
-        onMouseEnter={_cursorGrab}
-        onMouseLeave={_cursorGrab}
-      >
-        {children}
-      </motion.div>
+    <div className={container({ className: className?.container })}>
+      <div ref={scope} className={wrapper({ className: className?.wrapper })}>
+        <motion.div
+          id={`${name}-draggable`}
+          drag="x"
+          dragConstraints={scope}
+          className={dragger({ className: className?.dragger })}
+          onMouseDown={_cursorGrab}
+          onMouseUp={_cursorGrab}
+          onMouseEnter={_cursorGrab}
+          onMouseLeave={_cursorGrab}
+        >
+          {children}
+        </motion.div>
+      </div>
     </div>
   );
 }

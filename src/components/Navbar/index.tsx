@@ -1,7 +1,7 @@
 import Image from '@/components/Image';
 import Links from './fragments/Links';
 import classMerge from '@/utils/classMerge';
-import ColorLogo from './contents/images/color-logo.png';
+import ColorLogo from '@/contents/images/color-logo.png';
 import MonoLogo from '@/contents/images/mono-logo.png';
 import Hamburger from './contents/svgs/hamburger.svg';
 import type { NavbarProps } from './type';

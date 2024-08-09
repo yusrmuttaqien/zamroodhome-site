@@ -1,17 +1,12 @@
-import type { StaticImageData } from 'next/image';
+import type { ProductsStructure } from '@/hooks/products/type';
 
 export type BigCardProps = {
   className?: string;
-  content: {
-    images: string | StaticImageData; // TODO: update this type
-    duration: string;
-    title: string;
-    organizeBy: string;
-    description: string;
-    prices: {
-      initial: string;
-      final: string;
-    };
-    href: string;
-  };
+  content: ProductsStructure['lists'][0];
+};
+export type LoopingImageProps = {
+  content: ProductsStructure['lists'][0]['images'];
+};
+export type InteractiveParams = {
+  content: ProductsStructure['lists'][0]['images'];
 };
