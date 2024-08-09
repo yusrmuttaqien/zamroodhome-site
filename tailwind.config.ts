@@ -5,6 +5,7 @@ import {
   COLOR_BROWN,
   COLOR_GREEN,
   COLOR_WHITE,
+  COLOR_GREY,
 } from './src/constants/tailwind-config';
 import type { Config } from 'tailwindcss';
 
@@ -13,6 +14,7 @@ const config: Config = {
     './src/pages/**/*.{js,ts,jsx,tsx,mdx}',
     './src/components/**/*.{js,ts,jsx,tsx,mdx}',
     './src/app/**/*.{js,ts,jsx,tsx,mdx}',
+    './src/svgs/**/*.{js,ts,jsx,tsx,mdx}',
   ],
   theme: {
     extend: {
@@ -24,6 +26,9 @@ const config: Config = {
       screens: {
         sm: '430px',
         'md-500-only': { max: '499px' },
+        'md-500': '500px',
+        'md-700-only': { max: '699px' },
+        'md-700': '700px',
         'md-only': { max: '767px' },
         'xl-1096-only': { max: '1095px' },
         'xl-1096': '1096px',
@@ -38,6 +43,7 @@ const config: Config = {
         brown: COLOR_BROWN,
         black: COLOR_BLACK,
         white: COLOR_WHITE,
+        grey: COLOR_GREY,
       },
     },
   },
@@ -66,10 +72,11 @@ const config: Config = {
         '.wrapper': {
           paddingInline: '1rem',
           width: '100%',
+          maxWidth: '68.5rem',
+          marginInline: 'auto',
           '@media (min-width:1280px)': {
             paddingInline: '0rem',
             marginInline: 'auto',
-            maxWidth: '68.5rem',
           },
         },
       });
@@ -119,6 +126,11 @@ const config: Config = {
             const [minValue, maxValue, minViewport, maxViewport] = size.split(' ').map(Number);
 
             return { marginBlock: clamp({ minValue, maxValue, minViewport, maxViewport }) };
+          },
+          'leading-clamp': (size) => {
+            const [minValue, maxValue, minViewport, maxViewport] = size.split(' ').map(Number);
+
+            return { lineHeight: clamp({ minValue, maxValue, minViewport, maxViewport }) };
           },
         },
         { values: { none: '0 0 0 0' } }

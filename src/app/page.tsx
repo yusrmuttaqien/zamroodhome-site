@@ -2,6 +2,7 @@ import { Fragment } from 'react';
 import Image from '@/components/Image';
 import Hero from '@/components/app/index/Hero';
 import Experiences from '@/components/app/index/Experiences';
+import Destinations from '@/components/app/index/Destinations';
 import ColorSeparator from '@/contents/svgs/color-separator.svg';
 
 export default function Homepage() {
@@ -15,6 +16,7 @@ export default function Homepage() {
         draggable={false}
         wrapper={{ className: 'h-clamp-[36_97_430_1440] wrapper my-clamp-[72_94_430_1440]' }}
       />
+      <Destinations />
       Lorem ipsum dolor sit, amet consectetur adipisicing elit. Ratione officiis dicta alias,
       quaerat officia ipsum dolorum animi dolor, nemo voluptatum quo. Voluptatum quis non sequi illo
       aliquid, corporis excepturi ipsam voluptas ullam quo adipisci et sapiente earum odit unde, ad,

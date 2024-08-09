@@ -1,5 +1,6 @@
 import Image from '@/components/Image';
-import Button from '@/components/Button';
+import Link from '@/components/Link';
+import { buttonVariants } from '@/components/Button';
 import classMerge from '@/utils/classMerge';
 import IluCE from '../../contents/images/customize.png';
 import type { CostumizedExperienceProps } from './type';
@@ -30,13 +31,17 @@ export default function CostumizedExperience(props: CostumizedExperienceProps) {
           Create your own journey, personalized to suit your preferences and interests, ensuring a
           once-in-a-lifetime adventure awaits.
         </p>
-        <Button
-          look="solid"
-          theme="green"
-          className="capitalize md-500-only:w-full mt-clamp-[24_16_430_1440]"
+        <Link
+          href="https://pandooin.com/id/tailor-made/create?utm_source=zamrood&utm_medium=website&utm_campaign=premium"
+          className={buttonVariants({
+            theme: 'green',
+            look: 'solid',
+            class: 'capitalize md-500-only:w-full mt-clamp-[24_16_430_1440] inline-block',
+          })}
+          target="_blank"
         >
-          Costumize your trip
-        </Button>
+          Customize your trip
+        </Link>
       </div>
     </div>
   );

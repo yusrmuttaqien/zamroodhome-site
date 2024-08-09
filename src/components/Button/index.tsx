@@ -23,7 +23,10 @@ export const buttonVariants = tv({
     {
       look: 'outline',
       theme: 'green',
-      class: 'border-green-dark hoverable:hover:bg-green-dark text-white',
+      class: classMerge(
+        'border-green-dark hoverable:hover:bg-green-dark',
+        'text-green-dark hoverable:hover:text-white'
+      ),
     },
     {
       look: 'solid',

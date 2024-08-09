@@ -2,7 +2,8 @@
 
 import useInteractive from './hooks/interactive';
 import Image from '@/components/Image';
-import Button from '@/components/Button';
+import Link from '@/components/Link';
+import { buttonVariants } from '@/components/Button';
 import classMerge from '@/utils/classMerge';
 import BG from './contents/images/bg.jpeg';
 
@@ -36,13 +37,16 @@ export default function Hero() {
           Experience the finest that Indonesia has to offer with our curated selection of premium
           trips, ensuring comfort every step of the way
         </p>
-        <Button
-          theme="white"
-          look="outline"
-          className="mt-6 hoverable:hover:bg-brown hoverable:hover:border-brown"
+        <Link
+          href="/#destinations"
+          className={buttonVariants({
+            theme: 'white',
+            look: 'outline',
+            className: 'mt-6 hoverable:hover:bg-brown hoverable:hover:border-brown inline-block',
+          })}
         >
           Take me there
-        </Button>
+        </Link>
       </div>
     </section>
   );
