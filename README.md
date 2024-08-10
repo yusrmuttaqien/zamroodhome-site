@@ -38,7 +38,7 @@
     bun install
     ```
 
-4. Initialize required environment variables in root directory (one level with `/src` folder)
+4. Initialize required environment variables `.env` in root directory (one level with `/src` folder)
 
     ```env
     NEXT_PUBLIC_API_BASE_URL=...
