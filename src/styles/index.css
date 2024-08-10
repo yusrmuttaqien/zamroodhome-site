@@ -1,0 +1,32 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    --navbar-height: 5.125rem;
+  }
+
+  * {
+    @apply !scroll-smooth;
+    -ms-overflow-style: none; /* Internet Explorer 10+ */
+    scrollbar-width: none !important; /* Firefox */
+  }
+  *::-webkit-scrollbar {
+    display: none !important; /* Safari and Chrome */
+  }
+
+  html {
+    @apply bg-white;
+  }
+
+  body {
+    @apply min-w-[26.875rem] antialiased body text-black;
+  }
+
+  @media (min-width: 1280px) {
+    :root {
+      --navbar-height: 6.6875rem;
+    }
+  }
+}
