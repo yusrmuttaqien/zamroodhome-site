@@ -1,4 +1,4 @@
-import type { NavLinkLookProps } from '../fragments/Links/type';
+import type { NavLinkLookProps } from '../fragments/NavLookLink/type';
 
 export default {
   navLinks: {
@@ -16,7 +16,6 @@ export default {
     'Need assistance?': {
       href: 'https://wa.me/6283831556160?text=Hi,%20I%20wanna%20ask%20question%20about%20Zamrood',
       look: 'button',
-      className: { link: 'ml-6' },
       target: '_blank',
     } as NavLinkLookProps,
   } as const,

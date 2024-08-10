@@ -1,76 +1,25 @@
 'use client';
 
-import { Fragment } from 'react';
-import { motion } from 'framer-motion';
-import { tv } from 'tailwind-variants';
-import Link from '@/components/Link';
-import { buttonVariants } from '@/components/Button';
+import NavLooksLink from '../NavLookLink';
 import classMerge from '@/utils/classMerge';
 import untranslated from '../../contents/untranslated';
-import type { LinksProps, NavLinkLookProps } from './type';
+import type { LinksProps } from './type';
 
-const linkVariants = tv({
-  base: classMerge(
-    'font-bold font-variation-settings-["wght"_700] capitalize',
-    'text-white px-6 py-[1.0938rem] transition-colors nav-link'
-  ),
-  variants: {
-    look: {
-      navLinkLook: 'relative',
-      button: buttonVariants({
-        theme: 'white',
-        look: 'outline',
-        class: 'hoverable:hover:!text-white',
-      }),
-    },
-  },
-});
-
-export const NAVLOOKSLINK_STYLES = tv({
-  slots: {
-    link: '',
-    indicator: 'absolute bottom-0 left-0 right-0 h-[0.125rem] bg-[currentColor]',
-  },
-});
 export default function Links(props: LinksProps) {
   const { className } = props;
   const { navLinks } = untranslated;
 
   return (
     <div className={classMerge('flex gap-6 items-center', className)}>
-      {Object.entries(navLinks).map(([key, value]) => {
+      {Object.entries(navLinks).map(([key, value], idx, arr) => {
+        const isLast = arr.length - 1 === idx;
+
         return (
-          <NavLooksLink key={key} {...value}>
+          <NavLooksLink {...value} key={key} className={{ link: classMerge(isLast && 'ml-6') }}>
             {key}
           </NavLooksLink>
         );
       })}
     </div>
-  );
-}
-export function NavLooksLink(props: NavLinkLookProps) {
-  const { children, look = 'navLinkLook', className, ...rest } = props;
-  const isNavLinkLook = look === 'navLinkLook';
-  const { link, indicator } = NAVLOOKSLINK_STYLES();
-
-  return (
-    <Link
-      {...rest}
-      className={linkVariants({ look, className: link({ className: className?.link }) })}
-    >
-      {({ isActive }) => {
-        return (
-          <Fragment>
-            {children}
-            {isActive && isNavLinkLook && (
-              <motion.span
-                layoutId="nav-link-active"
-                className={indicator({ className: className?.indicator })}
-              />
-            )}
-          </Fragment>
-        );
-      }}
-    </Link>
   );
 }

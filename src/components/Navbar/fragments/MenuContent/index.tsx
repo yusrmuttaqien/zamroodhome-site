@@ -2,10 +2,10 @@ import { useState, type MouseEvent } from 'react';
 import { createPortal } from 'react-dom';
 import { useIsomorphicLayoutEffect, motion, AnimatePresence } from 'framer-motion';
 import Image from '@/components/Image';
-import { NavLooksLink } from '../Links';
+import NavLooksLink from '../NavLookLink';
 import classMerge from '@/utils/classMerge';
 import Close from '../../contents/svgs/close.svg';
-import { VARIANTS } from './constant';
+import { VARIANTS, ID } from './constant';
 import untranslated from '../../contents/untranslated';
 import type { MenuContentProps, ContentProps } from './type';
 
@@ -24,7 +24,7 @@ export default function MenuContent(props: MenuContentProps) {
     e.stopPropagation();
     const targetId = (e.target as HTMLElement).id;
 
-    if (targetId === 'menu-backdrop') {
+    if (targetId === ID) {
       _close();
     }
   }
@@ -35,7 +35,7 @@ export default function MenuContent(props: MenuContentProps) {
     function _resize() {
       const width = window.innerWidth;
 
-      width >= 1280 && _close();
+      width >= 1280 && isOpen && _close();
     }
 
     window.addEventListener('resize', _resize);
@@ -43,18 +43,18 @@ export default function MenuContent(props: MenuContentProps) {
     return () => {
       window.removeEventListener('resize', _resize);
     };
-  }, []);
+  }, [isOpen]);
 
   const markup = (
     <motion.div
-      id="menu-backdrop"
+      id={ID}
       style={{
         pointerEvents: isOpen ? 'auto' : 'none',
         backdropFilter: isOpen ? 'blur(10px)' : 'blur(0px)',
       }}
       onClick={_backdropClick}
       className={classMerge(
-        'size-full bg-transparent transition-[backdrop-filter] grid',
+        'absolute inset-0 bg-transparent transition-[backdrop-filter] grid',
         'place-items-center cursor-alias duration-300'
       )}
     >
@@ -72,7 +72,7 @@ function Content(props: ContentProps) {
   return (
     <motion.div
       className={classMerge(
-        'cursor-default h-full w-1/2 ml-auto bg-white p-4',
+        'cursor-default h-full w-1/2 min-w-[18.75rem] ml-auto bg-white p-4',
         'shadow-[0rem_0.25rem_0.625rem_0rem_#0000001A]'
       )}
       {...VARIANTS}
@@ -81,13 +81,15 @@ function Content(props: ContentProps) {
         <Image src={Close} alt="Sidebar close toggle" draggable={false} loading="eager" />
       </button>
       <div className="flex flex-col items-center justify-center h-[calc(100%_-_3.125rem)]">
-        {Object.entries(navLinks).map(([key, value]) => {
+        {Object.entries(navLinks).map(([key, value], idx, arr) => {
+          const isLast = arr.length - 1 === idx;
+
           return (
             <NavLooksLink
               {...value}
               key={key}
               onClick={close}
-              className={{ link: 'text-green-dark w-max block' }}
+              className={{ link: classMerge('text-green-dark w-max block', isLast && 'mt-4') }}
             >
               {key}
             </NavLooksLink>

@@ -4,7 +4,7 @@ import { LOOP_DURATION } from '../constant';
 import type { InteractiveParams } from '../type';
 
 export default function useInteractive(params: InteractiveParams) {
-  const { content } = params;
+  const { content, pause } = params;
   const scope = useRef<HTMLDivElement>(null);
   const lastTime = useRef(0);
   const [active, setActive] = useState({ key: 0, content: content[0] });
@@ -23,7 +23,7 @@ export default function useInteractive(params: InteractiveParams) {
   }
   function _void() {}
 
-  useAnimationFrame(isInView ? _loop : _void);
+  useAnimationFrame(isInView && !pause ? _loop : _void);
 
-  return { scope, active };
+  return { scope, active, isInView };
 }

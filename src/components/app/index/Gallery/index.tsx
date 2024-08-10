@@ -1,13 +1,18 @@
 'use client';
 
-import { Fragment } from 'react';
+import { Fragment, useState, memo } from 'react';
 import useProducts from '@/hooks/products';
 import StickyMessage from '@/components/StickyMessage';
+import ImagePreview from './fragments/ImagePreview';
 import Single from './fragments/Single';
 import StackedCarousel from './fragments/StackedCarousel';
+import type { ImageEntity } from '@/types/data';
+
+const MemoizedStackedCarousel = memo(StackedCarousel);
 
 export default function Gallery() {
   const { galleries, isLoading } = useProducts();
+  const [isOpen, setIsOpen] = useState<ImageEntity | null>(null);
   const isEmpty = galleries.length === 0;
   const isAvailable = !isLoading && !isEmpty;
 
@@ -18,7 +23,7 @@ export default function Gallery() {
       </h2>
       {!isAvailable && (
         <StickyMessage className={{ wrapper: 'h-[calc(100svh_-_var(--navbar-height))]' }}>
-          <p className="text-center font-medium mt-6">
+          <p className="text-center font-medium mt-6 text-white">
             {isLoading && 'Loading galleries'}
             {!isLoading && 'No galleries images found'}
           </p>
@@ -26,8 +31,17 @@ export default function Gallery() {
       )}
       {isAvailable && (
         <Fragment>
-          <StackedCarousel content={galleries} className="space-y-6 md-550-only:hidden" />
-          <Single content={galleries} className="md-550:hidden" />
+          <MemoizedStackedCarousel
+            state={setIsOpen}
+            content={galleries}
+            className="space-y-6 md-550-only:hidden"
+          />
+          <Single
+            state={[isOpen, setIsOpen]}
+            content={galleries}
+            className="space-y-6 md-550:hidden"
+          />
+          <ImagePreview state={[isOpen, setIsOpen]} />
         </Fragment>
       )}
     </section>
