@@ -14,7 +14,7 @@ export const DRAGGABLE_STYLES = tv({
 });
 
 export default function Draggable(props: DraggableProps) {
-  const { children, className, name } = props;
+  const { children, className, name, onDragStart, onDragEnd } = props;
   const scope = useRef<HTMLDivElement>(null);
   const states = useRef({
     mouseHold: false,
@@ -63,6 +63,8 @@ export default function Draggable(props: DraggableProps) {
           onMouseUp={_cursorGrab}
           onMouseEnter={_cursorGrab}
           onMouseLeave={_cursorGrab}
+          onDragStart={onDragStart}
+          onDragEnd={onDragEnd}
         >
           {children}
         </motion.div>

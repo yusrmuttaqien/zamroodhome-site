@@ -1,8 +1,15 @@
 import { useRef } from 'react';
-import { useIsomorphicLayoutEffect } from 'framer-motion';
+import {
+  useIsomorphicLayoutEffect,
+  useScroll,
+  useTransform,
+  type MotionStyle,
+} from 'framer-motion';
 
 export default function useInteractive() {
+  const { scrollYProgress } = useScroll();
   const scope = useRef<HTMLElement>(null);
+  const BGY = useTransform(scrollYProgress, [0, 0.5], ['0%', '70%']);
 
   useIsomorphicLayoutEffect(() => {
     const nav = document.querySelector('nav') as HTMLElement;
@@ -51,5 +58,5 @@ export default function useInteractive() {
     };
   }, []);
 
-  return { scope };
+  return { scope, bgStyle: { y: BGY } as MotionStyle };
 }

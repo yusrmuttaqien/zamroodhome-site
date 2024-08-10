@@ -1,4 +1,5 @@
-import { useRef, type MouseEvent } from 'react';
+import { useRef } from 'react';
+import { useIsomorphicLayoutEffect } from 'framer-motion';
 import Image from '@/components/Image';
 import Draggable from '@/components/Draggable';
 import MonoSeparator from '@/contents/svgs/mono-separator.svg';
@@ -30,31 +31,38 @@ export default function StackedCarousel(props: StackedCarouselProps) {
 
 function Carousel(props: CarouselProps) {
   const { className, content, name, state } = props;
-  const gestureEvents = useRef({
-    mouseMove: false,
-    mouseDown: false,
-  });
+  const isDragging = useRef(false);
+  const timeout = useRef<NodeJS.Timeout>();
 
-  function _mouseMoves(e: MouseEvent) {
-    // TODO: Enhance interactive outcome
-    const event = e.type;
-
-    event === 'mouseenter' && (gestureEvents.current = { mouseDown: false, mouseMove: false });
-    event === 'mousedown' && (gestureEvents.current.mouseDown = true);
-    event === 'mousemove' &&
-      gestureEvents.current.mouseDown &&
-      (gestureEvents.current.mouseMove = true);
+  function _dragIntercept(e: string) {
+    switch (e) {
+      case 'start':
+        isDragging.current = true;
+        break;
+      case 'end':
+        timeout.current = setTimeout(() => {
+          isDragging.current = false;
+        }, 1500);
+        break;
+    }
   }
   function _onClick(e: ImageEntity) {
-    const { mouseDown, mouseMove } = gestureEvents.current;
+    if (isDragging.current) return;
 
-    if (mouseDown && mouseMove) return;
     state(e);
   }
+
+  useIsomorphicLayoutEffect(() => {
+    return () => {
+      clearTimeout(timeout.current);
+    };
+  }, []);
 
   return (
     <Draggable
       name={name}
+      onDragEnd={() => _dragIntercept('end')}
+      onDragStart={() => _dragIntercept('start')}
       className={{
         wrapper: classMerge('wrapper', className),
         dragger: 'flex justify-between gap-6 xl-only:px-9',
@@ -70,10 +78,6 @@ function Carousel(props: CarouselProps) {
           onClick={() => _onClick({ src, alt, id })}
           placeholder="blur"
           blurDataURL={ColorLogoEmblem.blurDataURL}
-          onMouseMove={_mouseMoves}
-          onMouseEnter={_mouseMoves}
-          onMouseDown={_mouseMoves}
-          onMouseUp={_mouseMoves}
           wrapper={{ className: 'h-[21.8331rem] aspect-square cursor-pointer' }}
         />
       ))}

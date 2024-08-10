@@ -1,5 +1,6 @@
 'use client';
 
+import { motion } from 'framer-motion';
 import useInteractive from './hooks/interactive';
 import HashHost from '@/components/HashHost';
 import Image from '@/components/Image';
@@ -10,7 +11,7 @@ import BG from './contents/images/bg.jpeg';
 import { ID } from './constant';
 
 export default function Hero() {
-  const { scope } = useInteractive();
+  const { scope, bgStyle } = useInteractive();
 
   return (
     <section
@@ -21,15 +22,18 @@ export default function Hero() {
         'min-h-[31.25rem]'
       )}
     >
-      <Image
-        src={BG}
-        alt="Hero"
-        draggable={false}
-        className="object-cover"
-        placeholder="blur"
-        loading="eager"
-        wrapper={{ className: 'absolute inset-0 z-0 pointer-events-none' }}
-      />
+      <div className="absolute inset-0 z-0 pointer-events-none overflow-hidden">
+        <motion.div style={bgStyle} className="size-full">
+          <Image
+            src={BG}
+            alt="Hero"
+            draggable={false}
+            className="object-cover"
+            placeholder="blur"
+            loading="eager"
+          />
+        </motion.div>
+      </div>
       <div className="relative wrapper xl:mb-[7.9375rem] text-white xl-only:text-center">
         <h1 className="text-clamp-[86_128_430_1440] text-brown font-the-signature">
           Premium Travel
