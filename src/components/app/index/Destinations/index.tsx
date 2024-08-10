@@ -7,6 +7,7 @@ import ExploreMore from './fragments/ExploreMore';
 import BigCard from './fragments/BigCard';
 import SmallCard from './fragments/SmallCard';
 import classMerge from '@/utils/classMerge';
+import { ID } from './constant';
 import type { DestinationsProps } from './type';
 
 export default function Destinations(props: DestinationsProps) {
@@ -21,7 +22,7 @@ export default function Destinations(props: DestinationsProps) {
   return (
     <section
       className={classMerge('scroll-m-[calc(3rem_+_var(--navbar-height))]', className)}
-      id="destinations"
+      id={ID}
     >
       <div className="wrapper">
         <div className="flex md-500-only:flex-col gap-2 md-500:gap-6 md-500:items-center">

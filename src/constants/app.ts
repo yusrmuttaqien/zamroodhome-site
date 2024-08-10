@@ -28,7 +28,7 @@ export const metadata: Metadata = {
   applicationName: 'Zamrood',
   referrer: 'origin-when-cross-origin',
   authors: [{ name: 'PT Teknologi Pandu Wisata', url: 'zamrood@pandooin.com' }],
-  creator: 'Pandooin',
+  creator: 'Yusril Muttaqien',
   publisher: 'Yusril Muttaqien',
   openGraph: {
     type: 'website',

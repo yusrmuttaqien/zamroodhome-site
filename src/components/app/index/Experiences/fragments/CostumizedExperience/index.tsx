@@ -1,8 +1,10 @@
+import HashHost from '@/components/HashHost';
 import Image from '@/components/Image';
 import Link from '@/components/Link';
 import { buttonVariants } from '@/components/Button';
 import classMerge from '@/utils/classMerge';
 import IluCE from '../../contents/images/customize.png';
+import { ID } from './constant';
 import type { CostumizedExperienceProps } from './type';
 
 export default function CostumizedExperience(props: CostumizedExperienceProps) {
@@ -10,7 +12,7 @@ export default function CostumizedExperience(props: CostumizedExperienceProps) {
 
   return (
     <div
-      id="customize-your-trip"
+      id={ID}
       className={classMerge(
         'flex flex-col md:flex-row gap-clamp-[16_24_430_1440] wrapper items-center',
         'justify-center scroll-m-[calc(3rem_+_var(--navbar-height))]',
@@ -43,6 +45,7 @@ export default function CostumizedExperience(props: CostumizedExperienceProps) {
           Customize your trip
         </Link>
       </div>
+      <HashHost hash={`#${ID}`} />
     </div>
   );
 }

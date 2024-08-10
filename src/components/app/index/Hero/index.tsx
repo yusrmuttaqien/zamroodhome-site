@@ -1,17 +1,20 @@
 'use client';
 
 import useInteractive from './hooks/interactive';
+import HashHost from '@/components/HashHost';
 import Image from '@/components/Image';
 import Link from '@/components/Link';
 import { buttonVariants } from '@/components/Button';
 import classMerge from '@/utils/classMerge';
 import BG from './contents/images/bg.jpeg';
+import { ID } from './constant';
 
 export default function Hero() {
   const { scope } = useInteractive();
 
   return (
     <section
+      id={ID}
       ref={scope}
       className={classMerge(
         'relative h-[100svh] -mt-[var(--navbar-height)] isolate flex items-center xl:items-end',
@@ -47,6 +50,7 @@ export default function Hero() {
         >
           Take me there
         </Link>
+        <HashHost hash={`#${ID}`} applyPathnameOnly />
       </div>
     </section>
   );

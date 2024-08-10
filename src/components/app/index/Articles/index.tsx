@@ -1,5 +1,7 @@
+import HashHost from '@/components/HashHost';
 import ArticleBoxes from './fragments/ArticleBoxes';
 import classMerge from '@/utils/classMerge';
+import { ID } from './constant';
 import type { ArticlesProps } from './type';
 
 export default function Articles(props: ArticlesProps) {
@@ -11,7 +13,7 @@ export default function Articles(props: ArticlesProps) {
         'wrapper space-y-6 scroll-m-[calc(3rem_+_var(--navbar-height))]',
         className
       )}
-      id="article"
+      id={ID}
     >
       <div className="space-y-2">
         <h2 className="text-clamp-[22_36_430_1440] font-unbounded font-bold text-green-light leading-clamp-[27_44_430_1440">
@@ -22,6 +24,7 @@ export default function Articles(props: ArticlesProps) {
         </p>
       </div>
       <ArticleBoxes />
+      <HashHost hash={`#${ID}`} />
     </section>
   );
 }
