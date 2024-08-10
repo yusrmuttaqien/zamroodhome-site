@@ -15,9 +15,9 @@ export default function Navbar(props: NavbarProps) {
     <nav
       className={classMerge(
         'sticky left-0 top-0 w-full bg-white isolate before:z-0 before:transition-colors',
-        'xl:before:absolute xl:before:inset-0 xl:before:bg-transparent',
+        'xl:before:absolute xl:before:inset-0 xl:before:-bottom-[3rem] xl:before:bg-transparent',
         'xl:before:backdrop-blur-[8px] xl-only:shadow-[0rem_0.25rem_0.625rem_0rem_#0000001A]',
-        'xl:bg-transparent xl:before:mask-navbar',
+        'xl:bg-transparent xl:before:mask-navbar before:pointer-events-none',
         className
       )}
     >
