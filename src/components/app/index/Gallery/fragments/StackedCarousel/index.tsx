@@ -65,7 +65,7 @@ function Carousel(props: CarouselProps) {
           key={id}
           draggable={false}
           className="object-cover"
-          alt={alt}
+          alt={alt || id || `image-of-${src}`}
           onClick={() => _onClick({ src, alt, id })}
           onMouseMove={_mouseMoves}
           onMouseEnter={_mouseMoves}

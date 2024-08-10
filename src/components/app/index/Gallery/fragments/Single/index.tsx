@@ -22,7 +22,7 @@ export default function Single(props: SingleProps) {
               src={active.content.src}
               draggable={false}
               className="object-cover"
-              alt={active.content.alt}
+              alt={active.content.alt || active.content.id || `image-of-${active.content.src}`}
               onClick={() => setIsOpen(active.content)}
             />
           </motion.div>

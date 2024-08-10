@@ -2,7 +2,7 @@
 
 import { useState, type MouseEvent } from 'react';
 import { createPortal } from 'react-dom';
-import { useIsomorphicLayoutEffect, motion, AnimatePresence } from 'framer-motion';
+import { useIsomorphicLayoutEffect, motion, AnimatePresence, useMotionValue } from 'framer-motion';
 import Image from '@/components/Image';
 import classMerge from '@/utils/classMerge';
 import Maximize from '../../contents/svgs/maximize.svg';
@@ -13,6 +13,7 @@ export default function ImagePreview(props: ImagePreviewProps) {
   const { state } = props;
   const [isOpen, setIsOpen] = state;
   const [portal, setPortal] = useState<HTMLElement | null>(null);
+  const buttonOpacity = useMotionValue(0);
 
   function _close() {
     const body = document.body;
@@ -21,6 +22,7 @@ export default function ImagePreview(props: ImagePreviewProps) {
     setIsOpen(null);
     body.classList.remove('overflow-hidden');
     doc.fullscreenElement && doc.exitFullscreen();
+    buttonOpacity.set(0);
   }
   function _open() {
     const body = document.body;
@@ -35,19 +37,21 @@ export default function ImagePreview(props: ImagePreviewProps) {
       _close();
     }
   }
-  function _fullScreen(e: MouseEvent) {
-    const target = e.target as HTMLElement;
+  function _fullScreen() {
     const doc = document.documentElement;
 
     doc.requestFullscreen();
-    target.classList.add('hidden');
+    buttonOpacity.set(0);
   }
 
   useIsomorphicLayoutEffect(() => {
     setPortal(document.getElementById('portal'));
   }, []);
   useIsomorphicLayoutEffect(() => {
-    !!isOpen && _open();
+    if (!!isOpen) {
+      _open();
+      buttonOpacity.set(1);
+    }
   }, [isOpen]);
 
   const markup = (
@@ -66,7 +70,7 @@ export default function ImagePreview(props: ImagePreviewProps) {
       <motion.button
         style={{
           pointerEvents: !!isOpen ? 'auto' : 'none',
-          opacity: !!isOpen ? 1 : 0,
+          opacity: buttonOpacity,
         }}
         className={classMerge(
           'absolute right-4 top-4 size-[3.125rem] pointer-events-auto transition-opacity'

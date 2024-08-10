@@ -12,7 +12,7 @@ export default function SmallCard(props: SmallCardProps) {
   return (
     <figure className="w-min">
       <Image
-        alt={images[0].alt}
+        alt={images[0].alt || images[0].id || `image-of-${images[0].src}`}
         src={images[0].src}
         className="object-cover"
         draggable={false}

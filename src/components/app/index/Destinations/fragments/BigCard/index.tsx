@@ -78,7 +78,7 @@ function LoopingImage(props: LoopingImageProps) {
       <AnimatePresence initial={false}>
         <motion.div key={active.key} className="absolute inset-0" {...VARIANTS}>
           <Image
-            alt={active.content.alt}
+            alt={active.content.alt || active.content.id || `image-of-${active.content.src}`}
             src={active.content.src}
             draggable={false}
             className="object-cover"
