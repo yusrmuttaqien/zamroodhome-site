@@ -13,7 +13,7 @@ export default function CostumizedExperience(props: CostumizedExperienceProps) {
       id="customize-your-trip"
       className={classMerge(
         'flex flex-col md:flex-row gap-clamp-[16_24_430_1440] wrapper items-center',
-        'justify-center scroll-m-[var(--navbar-height)]',
+        'justify-center scroll-m-[calc(3rem_+_var(--navbar-height))]',
         className
       )}
     >

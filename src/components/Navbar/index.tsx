@@ -1,9 +1,9 @@
 import Image from '@/components/Image';
 import Links from './fragments/Links';
+import Menu from './fragments/Menu';
 import classMerge from '@/utils/classMerge';
 import ColorLogo from '@/contents/images/color-logo.png';
 import MonoLogo from '@/contents/images/mono-logo.png';
-import Hamburger from './contents/svgs/hamburger.svg';
 import type { NavbarProps } from './type';
 
 const LOGO_WRAPPER_STYLES = 'absolute inset-0 transition-opacity';
@@ -45,9 +45,7 @@ export default function Navbar(props: NavbarProps) {
           />
         </div>
         <Links className="xl-only:hidden z-10" />
-        <button className="h-[3.125rem] aspect-square xl:hidden">
-          <Image src={Hamburger} alt="Sidebar hamburger toggle" draggable={false} loading="eager" />
-        </button>
+        <Menu />
       </div>
     </nav>
   );

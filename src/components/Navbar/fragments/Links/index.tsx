@@ -26,6 +26,12 @@ const linkVariants = tv({
   },
 });
 
+export const NAVLOOKSLINK_STYLES = tv({
+  slots: {
+    link: '',
+    indicator: 'absolute bottom-0 left-0 right-0 h-[0.125rem] bg-[currentColor]',
+  },
+});
 export default function Links(props: LinksProps) {
   const { className } = props;
   const { navLinks } = untranslated;
@@ -42,13 +48,16 @@ export default function Links(props: LinksProps) {
     </div>
   );
 }
-
-function NavLooksLink(props: NavLinkLookProps) {
+export function NavLooksLink(props: NavLinkLookProps) {
   const { children, look = 'navLinkLook', className, ...rest } = props;
   const isNavLinkLook = look === 'navLinkLook';
+  const { link, indicator } = NAVLOOKSLINK_STYLES();
 
   return (
-    <Link {...rest} className={linkVariants({ look, className })}>
+    <Link
+      {...rest}
+      className={linkVariants({ look, className: link({ className: className?.link }) })}
+    >
       {({ isActive }) => {
         return (
           <Fragment>
@@ -56,7 +65,7 @@ function NavLooksLink(props: NavLinkLookProps) {
             {isActive && isNavLinkLook && (
               <motion.span
                 layoutId="nav-link-active"
-                className="absolute bottom-0 left-0 right-0 h-[0.125rem] bg-[currentColor]"
+                className={indicator({ className: className?.indicator })}
               />
             )}
           </Fragment>

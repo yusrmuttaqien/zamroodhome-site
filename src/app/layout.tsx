@@ -14,6 +14,7 @@ export default function RootLayout(props: RootLayoutProps) {
     <html lang="en">
       <body className={classMerge(unbounded.variable, albertSans.variable, theSignature.variable)}>
         <Providers>
+          <div id="portal" className="z-30 fixed inset-0 pointer-events-none" />
           <Navbar className="z-20" />
           <main className="z-10">{children}</main>
           <Footer className="z-10" />

@@ -7,7 +7,10 @@ export default function Articles(props: ArticlesProps) {
 
   return (
     <section
-      className={classMerge('wrapper space-y-6 scroll-m-[var(--navbar-height)]', className)}
+      className={classMerge(
+        'wrapper space-y-6 scroll-m-[calc(3rem_+_var(--navbar-height))]',
+        className
+      )}
       id="article"
     >
       <div className="space-y-2">
