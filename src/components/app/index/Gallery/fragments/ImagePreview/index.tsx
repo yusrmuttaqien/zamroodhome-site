@@ -88,11 +88,16 @@ export default function ImagePreview(props: ImagePreviewProps) {
 
 function Preview(props: PreviewProps) {
   const { src } = props;
-  const { alt, src: href } = src;
+  const { alt, src: href, id } = src;
 
   return (
     <motion.div className="size-full pointer-events-none relative py-6 wrapper" {...VARIANTS}>
-      <Image src={href} draggable={false} alt={alt} wrapper={{ className: 'size-full' }} />
+      <Image
+        src={href}
+        draggable={false}
+        alt={alt || id || `image-of-${src}`}
+        wrapper={{ className: 'size-full' }}
+      />
     </motion.div>
   );
 }
