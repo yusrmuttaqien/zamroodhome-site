@@ -10,6 +10,7 @@ export default function Image(props: ImageProps) {
     <div {...restWrapper} className={classMerge('relative h-full w-full', wrapperClassName)}>
       <NextImage
         {...rest}
+        sizes="100%"
         className={classMerge('object-contain', className)}
         fill
         src={src}
