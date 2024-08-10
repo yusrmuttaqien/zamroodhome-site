@@ -19,7 +19,7 @@ export default function Footer(props: FooterProps) {
                 alt={`zamrood-${key}`}
                 src={icon}
                 draggable={false}
-                wrapper={{ className: 'size-6' }}
+                wrapper={{ className: 'size-6 pointer-events-none' }}
               />
             </Link>
           ))}

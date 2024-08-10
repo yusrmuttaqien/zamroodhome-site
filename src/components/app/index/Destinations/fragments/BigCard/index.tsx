@@ -6,6 +6,7 @@ import Image from '@/components/Image';
 import Link from '@/components/Link';
 import { buttonVariants } from '@/components/Button';
 import classMerge from '@/utils/classMerge';
+import ColorLogoEmblem from '@/contents/images/color-logo-emblem.png';
 import { VARIANTS } from './constant';
 import type { BigCardProps, LoopingImageProps } from './type';
 
@@ -80,6 +81,8 @@ function LoopingImage(props: LoopingImageProps) {
           <Image
             alt={active.content.alt || active.content.id || `image-of-${active.content.src}`}
             src={active.content.src}
+            placeholder="blur"
+            blurDataURL={ColorLogoEmblem.blurDataURL}
             draggable={false}
             className="object-cover"
           />

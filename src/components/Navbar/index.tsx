@@ -6,7 +6,7 @@ import ColorLogo from '@/contents/images/color-logo.png';
 import MonoLogo from '@/contents/images/mono-logo.png';
 import type { NavbarProps } from './type';
 
-const LOGO_WRAPPER_STYLES = 'absolute inset-0 transition-opacity';
+const LOGO_WRAPPER_STYLES = 'absolute inset-0 transition-opacity pointer-events-none';
 
 export default function Navbar(props: NavbarProps) {
   const { className } = props;

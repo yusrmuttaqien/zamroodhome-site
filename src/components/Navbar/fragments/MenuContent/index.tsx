@@ -78,7 +78,13 @@ function Content(props: ContentProps) {
       {...VARIANTS}
     >
       <button className="h-[3.125rem] aspect-square ml-auto block" onClick={close}>
-        <Image src={Close} alt="Sidebar close toggle" draggable={false} loading="eager" />
+        <Image
+          src={Close}
+          alt="Sidebar close toggle"
+          draggable={false}
+          loading="eager"
+          wrapper={{ className: 'pointer-events-none' }}
+        />
       </button>
       <div className="flex flex-col items-center justify-center h-[calc(100%_-_3.125rem)]">
         {Object.entries(navLinks).map(([key, value], idx, arr) => {

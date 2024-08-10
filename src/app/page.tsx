@@ -17,7 +17,10 @@ export default function Homepage() {
         alt="color-separator"
         src={ColorSeparator}
         draggable={false}
-        wrapper={{ className: 'h-clamp-[36_97_430_1440] wrapper my-clamp-[72_94_430_1440]' }}
+        wrapper={{
+          className:
+            'h-clamp-[36_97_430_1440] wrapper my-clamp-[72_94_430_1440] pointer-events-none',
+        }}
       />
       <Destinations className="mb-clamp-[32_72_430_1440]" />
       <Gallery />

@@ -1,3 +1,4 @@
+import ColorLogoEmblem from '@/contents/images/color-logo-emblem.png';
 import Image from '@/components/Image';
 import Link from '@/components/Link';
 import classMerge from '@/utils/classMerge';
@@ -14,6 +15,8 @@ export default function ArticleCard(props: ArticleCardProps) {
           alt={image.alt}
           src={image.src}
           draggable={false}
+          placeholder="blur"
+          blurDataURL={ColorLogoEmblem.blurDataURL}
           className={classMerge(
             'object-cover group-hover/card:hoverable:saturate-100 transition-[filter]',
             'hoverable:saturate-0'

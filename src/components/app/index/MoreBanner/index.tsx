@@ -22,13 +22,13 @@ export default function MoreBanner(props: MoreBannerProps) {
           alt="More Banner Background"
           className="object-cover brightness-[60%]"
           draggable={false}
-          wrapper={{ className: 'absolute inset-0 z-0' }}
+          wrapper={{ className: 'absolute inset-0 z-0 pointer-events-none' }}
         />
         <Image
           src={MonoLogo}
           alt="Zamrood Logo"
           draggable={false}
-          wrapper={{ className: 'h-[3.375rem] w-[9.1069rem]' }}
+          wrapper={{ className: 'h-[3.375rem] w-[9.1069rem] pointer-events-none' }}
         />
         <figcaption className="relative text-white space-y-2">
           <p
