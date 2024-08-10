@@ -5,6 +5,7 @@ import { AnimatePresence } from 'framer-motion';
 import useInteractive from './hooks/interactive';
 import Image from '@/components/Image';
 import classMerge from '@/utils/classMerge';
+import ColorLogoEmblem from '@/contents/images/color-logo-emblem.png';
 import { VARIANTS } from './constant';
 import type { SingleProps } from './type';
 
@@ -24,6 +25,8 @@ export default function Single(props: SingleProps) {
               className="object-cover"
               alt={active.content.alt || active.content.id || `image-of-${active.content.src}`}
               onClick={() => setIsOpen(active.content)}
+              placeholder="blur"
+              blurDataURL={ColorLogoEmblem.blurDataURL}
             />
           </motion.div>
         </AnimatePresence>

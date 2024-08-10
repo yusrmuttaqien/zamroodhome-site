@@ -23,7 +23,10 @@ export default function CostumizedExperience(props: CostumizedExperienceProps) {
         alt="customized-experience-ilustration"
         src={IluCE}
         draggable={false}
-        wrapper={{ className: 'h-clamp-[188_302_430_1440] md:max-w-[20.5625rem]' }}
+        placeholder="blur"
+        wrapper={{
+          className: 'h-clamp-[188_302_430_1440] md:max-w-[20.5625rem] pointer-events-none',
+        }}
       />
       <div className="md-only:text-center md:max-w-clamp-[350_600_768_1440]">
         <h2 className="font-unbounded text-clamp-[22_32_430_1440] font-bold text-green-dark leading-[1.705rem]">

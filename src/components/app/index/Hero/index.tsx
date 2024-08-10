@@ -26,8 +26,9 @@ export default function Hero() {
         alt="Hero"
         draggable={false}
         className="object-cover"
+        placeholder="blur"
         loading="eager"
-        wrapper={{ className: 'absolute inset-0 z-0' }}
+        wrapper={{ className: 'absolute inset-0 z-0 pointer-events-none' }}
       />
       <div className="relative wrapper xl:mb-[7.9375rem] text-white xl-only:text-center">
         <h1 className="text-clamp-[86_128_430_1440] text-brown font-the-signature">

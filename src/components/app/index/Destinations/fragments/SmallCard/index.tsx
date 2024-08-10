@@ -2,6 +2,7 @@ import Image from '@/components/Image';
 import Link from '@/components/Link';
 import { buttonVariants } from '@/components/Button';
 import classMerge from '@/utils/classMerge';
+import ColorLogoEmblem from '@/contents/images/color-logo-emblem.png';
 import type { SmallCardProps } from './type';
 
 export default function SmallCard(props: SmallCardProps) {
@@ -14,6 +15,8 @@ export default function SmallCard(props: SmallCardProps) {
       <Image
         alt={images[0].alt || images[0].id || `image-of-${images[0].src}`}
         src={images[0].src}
+        placeholder="blur"
+        blurDataURL={ColorLogoEmblem.blurDataURL}
         className="object-cover"
         draggable={false}
         wrapper={{ className: 'size-[16rem]' }}

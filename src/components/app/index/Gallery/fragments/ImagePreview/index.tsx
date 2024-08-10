@@ -5,6 +5,7 @@ import { createPortal } from 'react-dom';
 import { useIsomorphicLayoutEffect, motion, AnimatePresence, useMotionValue } from 'framer-motion';
 import Image from '@/components/Image';
 import classMerge from '@/utils/classMerge';
+import ColorLogoEmblem from '@/contents/images/color-logo-emblem.png';
 import Maximize from '../../contents/svgs/maximize.svg';
 import { ID, VARIANTS } from './constant';
 import type { ImagePreviewProps, PreviewProps } from './type';
@@ -77,7 +78,12 @@ export default function ImagePreview(props: ImagePreviewProps) {
         )}
         onClick={_fullScreen}
       >
-        <Image src={Maximize} draggable={false} alt="maximize" />
+        <Image
+          src={Maximize}
+          draggable={false}
+          alt="maximize"
+          wrapper={{ className: 'pointer-events-none' }}
+        />
       </motion.button>
       <AnimatePresence>{!!isOpen && <Preview src={isOpen} />}</AnimatePresence>
     </motion.div>
@@ -97,6 +103,8 @@ function Preview(props: PreviewProps) {
         draggable={false}
         alt={alt || id || `image-of-${src}`}
         wrapper={{ className: 'size-full' }}
+        placeholder="blur"
+        blurDataURL={ColorLogoEmblem.blurDataURL}
       />
     </motion.div>
   );

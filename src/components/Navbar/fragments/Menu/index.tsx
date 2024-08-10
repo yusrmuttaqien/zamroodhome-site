@@ -17,7 +17,13 @@ export default function Menu() {
 
   return (
     <button className="h-[3.125rem] aspect-square xl:hidden" onClick={_open}>
-      <Image src={Hamburger} alt="Sidebar hamburger toggle" draggable={false} loading="eager" />
+      <Image
+        src={Hamburger}
+        alt="Sidebar hamburger toggle"
+        draggable={false}
+        loading="eager"
+        wrapper={{ className: 'pointer-events-none' }}
+      />
       <MenuContent state={[isOpen, setIsOpen]} />
     </button>
   );

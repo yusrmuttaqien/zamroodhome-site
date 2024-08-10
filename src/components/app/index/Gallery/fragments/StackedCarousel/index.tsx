@@ -4,6 +4,7 @@ import Draggable from '@/components/Draggable';
 import MonoSeparator from '@/contents/svgs/mono-separator.svg';
 import evenSplitArray from '@/utils/evenSplitArray';
 import classMerge from '@/utils/classMerge';
+import ColorLogoEmblem from '@/contents/images/color-logo-emblem.png';
 import type { StackedCarouselProps, CarouselProps } from './type';
 import type { ImageEntity } from '@/types/data';
 
@@ -19,7 +20,7 @@ export default function StackedCarousel(props: StackedCarouselProps) {
           alt="mono-separator"
           src={MonoSeparator}
           draggable={false}
-          wrapper={{ className: 'h-[8.3vw] @[1096px]:h-[6.0475rem]' }}
+          wrapper={{ className: 'h-[8.3vw] @[1096px]:h-[6.0475rem] pointer-events-none' }}
         />
       </div>
       <Carousel state={state} content={secondArray} name="bottom" />
@@ -67,6 +68,8 @@ function Carousel(props: CarouselProps) {
           className="object-cover"
           alt={alt || id || `image-of-${src}`}
           onClick={() => _onClick({ src, alt, id })}
+          placeholder="blur"
+          blurDataURL={ColorLogoEmblem.blurDataURL}
           onMouseMove={_mouseMoves}
           onMouseEnter={_mouseMoves}
           onMouseDown={_mouseMoves}

@@ -7,11 +7,14 @@ export default function Image(props: ImageProps) {
   const { className: wrapperClassName, ...restWrapper } = wrapper || {};
 
   return (
-    <div {...restWrapper} className={classMerge('relative h-full w-full', wrapperClassName)}>
+    <div
+      {...restWrapper}
+      className={classMerge('relative h-full w-full isolate', wrapperClassName)}
+    >
       <NextImage
         {...rest}
         sizes="100%"
-        className={classMerge('object-contain', className)}
+        className={classMerge('object-contain z-0', className)}
         fill
         src={src}
         alt={alt}

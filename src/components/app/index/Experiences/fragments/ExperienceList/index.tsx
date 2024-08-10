@@ -36,7 +36,10 @@ function List(props: ListProps) {
         alt={`$${title}-illustration`}
         src={ilustration}
         draggable={false}
-        wrapper={{ className: 'h-clamp-[128_156_430_1440] aspect-square xl:mb-6' }}
+        placeholder="blur"
+        wrapper={{
+          className: 'h-clamp-[128_156_430_1440] aspect-square xl:mb-6 pointer-events-none',
+        }}
       />
       <figcaption className="text-center">
         <h3 className="font-bold text-clamp-[16_24_430_1440] text-green-light uppercase">
