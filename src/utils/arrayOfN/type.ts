@@ -1,4 +1,4 @@
-export type ArrayOfNParams = {
+export type ArrayOfNParams<T> = {
   length: number;
-  array: any[];
+  array: T[];
 };

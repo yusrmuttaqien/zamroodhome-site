@@ -7,17 +7,19 @@ import ExploreMore from './fragments/ExploreMore';
 import BigCard from './fragments/BigCard';
 import SmallCard from './fragments/SmallCard';
 import classMerge from '@/utils/classMerge';
+import arrayOfN from '@/utils/arrayOfN';
 import { ID } from './constant';
 import type { DestinationsProps } from './type';
 
 export default function Destinations(props: DestinationsProps) {
   const { className } = props;
   const { lists, isLoading } = useProducts();
-  const isEmpty = lists.length === 0;
+  const listMin = arrayOfN<(typeof lists)[0]>({ array: lists, length: 8 });
+  const isEmpty = listMin.length === 0;
   const isAvailable = !isLoading && !isEmpty;
-  const isMore = lists.length > 4;
-  const firstFour = lists.slice(0, 4);
-  const next = lists.slice(5);
+  const isMore = isAvailable && listMin.length > 4;
+  const firstFour = listMin.slice(0, 4);
+  const next = listMin.slice(5);
 
   return (
     <section
@@ -63,7 +65,10 @@ export default function Destinations(props: DestinationsProps) {
           }}
         >
           {next.map((item) => (
-            <SmallCard key={item.title} content={item} />
+            <>
+              {console.log(item)}
+              <SmallCard key={item.title} content={item} />
+            </>
           ))}
         </Draggable>
       )}

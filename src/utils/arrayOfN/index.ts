@@ -1,6 +1,6 @@
 import type { ArrayOfNParams } from './type';
 
-export default function arrayOfN(params: ArrayOfNParams) {
+export default function arrayOfN<T>(params: ArrayOfNParams<T>) {
   const { length, array } = params;
   let arr = [...array];
 
