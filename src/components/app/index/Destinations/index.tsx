@@ -65,10 +65,7 @@ export default function Destinations(props: DestinationsProps) {
           }}
         >
           {next.map((item) => (
-            <>
-              {console.log(item)}
-              <SmallCard key={item.title} content={item} />
-            </>
+            <SmallCard key={item.title} content={item} />
           ))}
         </Draggable>
       )}
