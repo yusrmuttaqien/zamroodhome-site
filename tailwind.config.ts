@@ -73,7 +73,7 @@ const config: Config = {
       );
       addComponents({
         '.body': {
-          fontFamily: theme('fontFamily.albertSans'),
+          fontFamily: theme('fontFamily.albert-sans'),
           fontSize: clamp({ minValue: 14, maxValue: 16, minViewport: 430, maxViewport: 1440 }),
         },
         '.wrapper': {
