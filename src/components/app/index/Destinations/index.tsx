@@ -14,8 +14,8 @@ import type { DestinationsProps } from './type';
 export default function Destinations(props: DestinationsProps) {
   const { className } = props;
   const { lists, isLoading } = useProducts();
+  const isEmpty = lists.length === 0;
   const listMin = arrayOfN<(typeof lists)[0]>({ array: lists, length: 8 });
-  const isEmpty = listMin.length === 0;
   const isAvailable = !isLoading && !isEmpty;
   const isMore = isAvailable && listMin.length > 4;
   const firstFour = listMin.slice(0, 4);
